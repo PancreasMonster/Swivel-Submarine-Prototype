@@ -69,7 +69,7 @@ public class JoyconDemo : MonoBehaviour {
             accel = j.GetAccel();
 
             orientation = j.GetVector();
-            gameObject.transform.rotation = orientation;
+            gameObject.transform.rotation = Quaternion.Euler(0, orientation.y * 360, 0);
         }
     }
 }
