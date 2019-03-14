@@ -54,6 +54,7 @@ public class VoiceRecognition : MonoBehaviour
         {
             GameObject clone = Instantiate(cannonBall, CBP.position, Quaternion.identity);
             cannonBall = clone;
+            clone.transform.parent = transform;
             rb = clone.GetComponent<Rigidbody>();
             reloadable = false;
         }
