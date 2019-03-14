@@ -32,5 +32,7 @@ public class VoiceRecognition : MonoBehaviour
         GameObject clone = Instantiate(cannonBall, transform.position, Quaternion.identity);
         Rigidbody rb = clone.AddComponent<Rigidbody>();
         rb.AddForce(transform.forward * force);
+        rb.useGravity = false;
+        Destroy(clone, 5);
     }
 }

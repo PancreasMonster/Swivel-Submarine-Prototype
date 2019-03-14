@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 3651225}
   - component: {fileID: 3651224}
   - component: {fileID: 3651223}
-  - component: {fileID: 3651222}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -132,22 +131,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3651222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3651221}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b5c154d920d754db92ed07a735dbc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stick: []
-  gyro: {x: 0, y: 0, z: 0}
-  accel: {x: 0, y: 0, z: 0}
-  orientation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!65 &3651223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -302,7 +285,6 @@ GameObject:
   - component: {fileID: 219752858}
   - component: {fileID: 219752857}
   - component: {fileID: 219752861}
-  - component: {fileID: 219752862}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -397,22 +379,6 @@ MonoBehaviour:
   speed: 5
   forceNeeded: 1.5
   cooldownLenght: 1
---- !u!114 &219752862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219752856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b5c154d920d754db92ed07a735dbc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stick: []
-  gyro: {x: 0, y: 0, z: 0}
-  accel: {x: 0, y: 0, z: 0}
-  orientation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,8 +390,9 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669906}
   - component: {fileID: 534669907}
+  - component: {fileID: 534669906}
+  - component: {fileID: 534669908}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -506,13 +473,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b5c154d920d754db92ed07a735dbc4, type: 3}
+  m_Script: {fileID: 11500000, guid: f4e6a02486d71254ab74a468c97148dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joyconType: 0
   stick: []
   gyro: {x: 0, y: 0, z: 0}
+  gyroMagnitude: 0
   accel: {x: 0, y: 0, z: 0}
+  accelMagnitude: 0
   orientation: {x: 0, y: 0, z: 0, w: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  voiceR: {fileID: 0}
+  forceNeeded: 0
+  cooldownLenght: 0
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +500,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 587490755}
-  force: 200
+  force: 1000
+--- !u!114 &534669908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e6a02486d71254ab74a468c97148dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyconType: 1
+  stick: []
+  gyro: {x: 0, y: 0, z: 0}
+  gyroMagnitude: 0
+  accel: {x: 0, y: 0, z: 0}
+  accelMagnitude: 0
+  orientation: {x: 0, y: 0, z: 0, w: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  voiceR: {fileID: 534669907}
+  forceNeeded: 6
+  cooldownLenght: 1
 --- !u!1 &587490755
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +625,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1729939972}
   - component: {fileID: 1729939971}
-  - component: {fileID: 1729939973}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -650,7 +646,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnableIMU: 1
   EnableLocalize: 1
-  LEDs: 255
 --- !u!4 &1729939972
 Transform:
   m_ObjectHideFlags: 0
@@ -665,19 +660,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1729939973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729939970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b5c154d920d754db92ed07a735dbc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stick: []
-  gyro: {x: 0, y: 0, z: 0}
-  accel: {x: 0, y: 0, z: 0}
-  orientation: {x: 0, y: 0, z: 0, w: 0}

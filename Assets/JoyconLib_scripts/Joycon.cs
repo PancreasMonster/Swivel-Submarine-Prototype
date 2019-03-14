@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System;
+
 using System.Threading;
 using UnityEngine;
 
@@ -53,16 +54,10 @@ public class Joycon
 
     private float[] stick = { 0, 0 };
 
-    private IntPtr handle;
+    private 
+	IntPtr handle;
 
-    // Different operating systems either do or don't like the trailing zero
-    private const ushort vendor_id = 0x57e;
-    private const ushort vendor_id_ = 0x057e;
-
-    private const ushort product_l = 0x2006;
-    private const ushort product_r = 0x2007;
-
-    private byte[] default_buf = { 0x0, 0x1, 0x40, 0x40, 0x0, 0x1, 0x40, 0x40 };
+    byte[] default_buf = { 0x0, 0x1, 0x40, 0x40, 0x0, 0x1, 0x40, 0x40 };
 
     private byte[] stick_raw = { 0, 0, 0 };
     private UInt16[] stick_cal = { 0, 0, 0, 0, 0, 0 };
@@ -193,9 +188,14 @@ public class Joycon
     private byte global_count = 0;
     private string debug_str;
 
-    public Joycon()
+	public Joycon(IntPtr handle_, bool imu, bool localize, float alpha, bool left)
     {
+		handle = handle_;
+		imu_enabled = imu;
+		do_localize = localize;
         rumble_obj = new Rumble(160, 320, 0);
+		filterweight = alpha;
+		isLeft = left;
     }
     public void DebugPrint(String s, DebugType d)
     {
@@ -233,45 +233,8 @@ public class Joycon
     {
         return Quaternion.LookRotation(new Vector3(j_b.y, i_b.y, k_b.y), new Vector3(j_b.z, i_b.z, k_b.z));
     }
-    public int Attach(byte leds_ = 0x0, bool imu = true, float alpha = 0.01f, bool localize = false)
+	public int Attach(byte leds_ = 0x0)
     {
-        imu_enabled = imu;
-        do_localize = localize & imu;
-        filterweight = alpha;
-        state = state_.NOT_ATTACHED;
-        HIDapi.hid_init();
-        IntPtr ptr = HIDapi.hid_enumerate(vendor_id, 0x0);
-        if (ptr == IntPtr.Zero)
-        {
-            ptr = HIDapi.hid_enumerate(vendor_id_, 0x0);
-            if (ptr == IntPtr.Zero)
-            { 
-                HIDapi.hid_free_enumeration(ptr);
-                DebugPrint("No Joy-Cons found.", DebugType.ALL);
-                state = state_.NO_JOYCONS;
-                return -1;
-            }
-        }
-        hid_device_info enumerate = (hid_device_info)Marshal.PtrToStructure(ptr, typeof(hid_device_info));
-        if (enumerate.product_id == product_l)
-        {
-            isLeft = true;
-            DebugPrint("Left Joy-Con connected.", DebugType.ALL);
-        }
-        else if (enumerate.product_id == product_r)
-        {
-            DebugPrint("Right Joy-Con connected.", DebugType.ALL);
-        }
-        else
-        {
-            HIDapi.hid_free_enumeration(ptr);
-            DebugPrint("No Joy-Cons found.", DebugType.ALL);
-            state = state_.NO_JOYCONS;
-            return -1;
-        }
-        handle = HIDapi.hid_open_path(enumerate.path);
-        HIDapi.hid_set_nonblocking(handle, 1);
-        HIDapi.hid_free_enumeration(ptr);
         state = state_.ATTACHED;
         byte[] a = { 0x0 };
         // Input report mode
@@ -399,8 +362,8 @@ public class Joycon
                     DebugPrint(string.Format("Duplicate timestamp dequeued. TS: {0:X2}", ts_de), DebugType.THREADING);
                 }
                 ts_de = report_buf[1];
-                //DebugPrint(string.Format("Dequeue. Queue length: {0:d}. Packet ID: {1:X2}. Timestamp: {2:X2}. Lag to dequeue: {3:s}. Lag between packets (expect 15ms): {4:s}",
-                  //  reports.Count, report_buf[0], report_buf[1], System.DateTime.Now.Subtract(rep.GetTime()), rep.GetTime().Subtract(ts_prev)), DebugType.THREADING);
+               // DebugPrint(string.Format("Dequeue. Queue length: {0:d}. Packet ID: {1:X2}. Timestamp: {2:X2}. Lag to dequeue: {3:s}. Lag between packets (expect 15ms): {4:s}",
+               //     reports.Count, report_buf[0], report_buf[1], System.DateTime.Now.Subtract(rep.GetTime()), rep.GetTime().Subtract(ts_prev)), DebugType.THREADING);
                 ts_prev = rep.GetTime();
             }
             ProcessButtonsAndStick(report_buf);
