@@ -10,7 +10,7 @@ public class AccelerometerInput : MonoBehaviour
     void Update()
     {
         //transform.Translate(Input.acceleration.x * Time.deltaTime * speed, 0, 0);
-        print(Input.acceleration.x);
+        //print(Input.acceleration.x);
         if (Input.acceleration.x > forceNeeded && !cooldown)
         {
             transform.Translate(0, 1, 0);

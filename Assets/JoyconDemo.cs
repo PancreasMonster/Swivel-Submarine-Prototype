@@ -34,7 +34,7 @@ public class JoyconDemo : MonoBehaviour {
 				Debug.Log(string.Format("Stick x: {0:N} Stick y: {1:N}",j.GetStick()[0],j.GetStick()[1]));
             
 				// Joycon has no magnetometer, so it cannot accurately determine its yaw value. Joycon.Recenter allows the user to reset the yaw value.
-				j.Recenter ();
+				//j.Recenter ();
 			}
 			// GetButtonDown checks if a button has been released
 			if (j.GetButtonUp (Joycon.Button.SHOULDER_2))
@@ -50,7 +50,7 @@ public class JoyconDemo : MonoBehaviour {
 			if (j.GetButtonDown (Joycon.Button.DPAD_DOWN)) {
 				Debug.Log ("Rumble");
 
-				// Rumble for 200 milliseconds, with low frequency rumble at 160 Hz and high frequency rumble at 320 Hz. For more information check:
+				// Rumble for 200 milliseconds, with low frequency rumble at 160 Hz and hig+h frequency rumble at 320 Hz. For more information check:
 				// https://github.com/dekuNukem/Nintendo_Switch_Reverse_Engineering/blob/master/rumble_data_table.md
 
 				j.SetRumble (160, 320, 0.6f, 200);
@@ -69,7 +69,7 @@ public class JoyconDemo : MonoBehaviour {
             accel = j.GetAccel();
 
             orientation = j.GetVector();
-            gameObject.transform.rotation = Quaternion.Euler(0, orientation.y * 360, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, Mathf.Abs(orientation.x) * 360 +90, 0);
         }
     }
 }
