@@ -67,7 +67,7 @@ public class JoyconController : MonoBehaviour {
 
             if (joyconType == JoyconManager.JoyconType.right && accelMagnitude > forceNeeded && !cooldown)
             {
-                voiceR.Fire();
+                voiceR.Reload();
                 cooldown = true;
                 StartCoroutine(BeenSwung());
             }
