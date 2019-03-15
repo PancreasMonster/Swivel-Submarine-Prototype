@@ -718,7 +718,7 @@ PrefabInstance:
     - target: {fileID: 4152977881526415311, guid: cf253193b9730f34db33af5e270e929c,
         type: 3}
       propertyPath: m_Name
-      value: CannonBall
+      value: InitialBall
       objectReference: {fileID: 0}
     - target: {fileID: 4152977881526415307, guid: cf253193b9730f34db33af5e270e929c,
         type: 3}

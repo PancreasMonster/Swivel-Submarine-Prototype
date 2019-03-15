@@ -12,13 +12,14 @@ public class VoiceRecognition : MonoBehaviour
     public GameObject cannonBall, initialBall;
     public Transform CBP;
     public float force;
-    Rigidbody rb;
+    //Rigidbody rb;
     bool reloadable = false, firedFirst = false;
 
     private void Start()
     {
-        rb = initialBall.GetComponent<Rigidbody>();
+        //rb = initialBall.GetComponent<Rigidbody>();
         actions.Add("fire", Fire);
+        actions.Add("reload", ReloadTest);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -35,15 +36,11 @@ public class VoiceRecognition : MonoBehaviour
     {
         if (!reloadable)
         {
-            rb.AddForce(transform.forward * force);
-            rb.useGravity = false;
-            if (!firedFirst)
-            {
-                Destroy(initialBall, 5);
-                firedFirst = true;
-            }
-            else
-                Destroy(cannonBall, 5);
+            GameObject CB = initialBall;
+            CB.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+            CB.GetComponent<Rigidbody>().useGravity = false;
+            CB.transform.parent = null;
+            Destroy(CB, 5);
             reloadable = true;
         }
     }
@@ -53,9 +50,23 @@ public class VoiceRecognition : MonoBehaviour
         if (reloadable)
         {
             GameObject clone = Instantiate(cannonBall, CBP.position, Quaternion.identity);
-            cannonBall = clone;
+            initialBall = null;
+            initialBall = clone;
             clone.transform.parent = transform;
-            rb = clone.GetComponent<Rigidbody>();
+            //rb = clone.GetComponent<Rigidbody>();
+            reloadable = false;
+        }
+    }
+
+    public void ReloadTest()
+    {
+        if (reloadable)
+        {
+            GameObject clone = Instantiate(cannonBall, CBP.position, Quaternion.identity);
+            initialBall = null;
+            initialBall = clone;
+            clone.transform.parent = transform;
+            //rb = clone.GetComponent<Rigidbody>();
             reloadable = false;
         }
     }
