@@ -5107,6 +5107,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gunpowder Particles
       objectReference: {fileID: 0}
+    - target: {fileID: 5638031724356209059, guid: fb3fa25ac8615c84d8773ae27c3b6a05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5638031724356209084, guid: fb3fa25ac8615c84d8773ae27c3b6a05,
         type: 3}
       propertyPath: m_LocalPosition.x
