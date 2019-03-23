@@ -17,7 +17,9 @@ public class JoyconController : MonoBehaviour {
 
     JoyconManager joyconManager;
     List<Joycon> joycons;
+#if UNITY_STANDALONE_WIN
     public VoiceRecognition voiceR;
+#endif
     public float forceNeeded, cooldownLenght;
     bool cooldown;
 
@@ -67,7 +69,9 @@ public class JoyconController : MonoBehaviour {
 
             if (joyconType == JoyconManager.JoyconType.right && accelMagnitude > forceNeeded && !cooldown)
             {
+                #if UNITY_STANDALONE_WIN
                 voiceR.Reload();
+#endif
                 cooldown = true;
                 StartCoroutine(BeenSwung());
             }
