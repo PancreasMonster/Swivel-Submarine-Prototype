@@ -27,4 +27,13 @@ public class Enemy : MonoBehaviour
             print(Vector3.SignedAngle(transform.position, player.transform.position, Vector3.up));
         }
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.transform.tag == "CannonBall")
+        {
+            Destroy(col.transform.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
 }

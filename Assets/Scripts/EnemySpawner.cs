@@ -6,7 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
     public GameObject player;
-    public float distance;
+    public float distance, enemyRate;
+    bool wait;
     //[Range(-1, 1)]
    // public float ang;
 
@@ -19,11 +20,19 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if (Input.GetKeyDown(KeyCode.Space))
+      if (!wait)
         {
+            wait = true;
             float ang = Random.Range(-1f, 1f);
             GameObject clone = Instantiate(enemy, player.transform.position + (new Vector3 (Mathf.Sin(ang), 0, Mathf.Cos(ang)) * distance), Quaternion.identity);
             clone.GetComponent<Enemy>().player = player;
+            StartCoroutine(Cooldown());
         }   
+   }
+
+    IEnumerator Cooldown ()
+    {
+        yield return new WaitForSeconds(enemyRate);
+        wait = false;
     }
 }
