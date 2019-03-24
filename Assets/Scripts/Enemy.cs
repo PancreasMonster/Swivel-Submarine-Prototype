@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         distance = Vector3.Distance(transform.position, player.transform.position);
+        Vector3 dir = player.transform.position - transform.position;
+        dir.Normalize();
+        GetComponentInChildren<Transform>().rotation = Quaternion.LookRotation(dir);
     }
 
     // Update is called once per frame
@@ -20,7 +23,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 dir = player.transform.position - transform.position;
         dir.Normalize();
-        transform.Translate(dir * distance * (1 / timeOfArrival) * Time.deltaTime);
+        transform.position += (dir * distance * (1 / timeOfArrival) * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
