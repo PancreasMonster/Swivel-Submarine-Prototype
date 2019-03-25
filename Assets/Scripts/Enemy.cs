@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         distance = Vector3.Distance(transform.position, player.transform.position);
-        Vector3 dir = player.transform.position - transform.position;
+        Vector3 dir = player.transform.position - (transform.position + (-Vector3.forward * 3));
         dir.Normalize();
         GetComponentInChildren<Transform>().rotation = Quaternion.LookRotation(dir);
     }
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = player.transform.position - transform.position;
+        Vector3 dir = player.transform.position - (transform.position + (-Vector3.forward * 3));
         dir.Normalize();
         transform.position += (dir * distance * (1 / timeOfArrival) * Time.deltaTime);
 

@@ -9,6 +9,7 @@ using System;
 public class VoiceRecognition : MonoBehaviour
 {
     private KeywordRecognizer keywordRecognizer;
+    public GameObject particles;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public GameObject cannonBall, initialBall;
     public Transform CBP;
@@ -38,11 +39,16 @@ public class VoiceRecognition : MonoBehaviour
         if (!reloadable)
         {
             GameObject CB = initialBall;
-            CB.GetComponent<Rigidbody>().AddForce(transform.forward * force);
-            CB.GetComponent<Rigidbody>().useGravity = false;
-            CB.transform.parent = null;
-            Destroy(CB, 5);
-            reloadable = true;
+            particles.SetActive(true);
+            if (CB != null)
+            {
+                CB.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+                CB.GetComponent<Rigidbody>().useGravity = false;
+                CB.transform.tag = "CannonBall";
+                CB.transform.parent = null;
+                Destroy(CB, 5);
+                reloadable = true;
+            }
         }
     }
 
@@ -51,6 +57,7 @@ public class VoiceRecognition : MonoBehaviour
         if (reloadable)
         {
             GameObject clone = Instantiate(cannonBall, CBP.position, Quaternion.identity);
+            particles.SetActive(false);
             initialBall = null;
             initialBall = clone;
             clone.transform.parent = transform;
@@ -64,6 +71,7 @@ public class VoiceRecognition : MonoBehaviour
         if (reloadable)
         {
             GameObject clone = Instantiate(cannonBall, CBP.position, Quaternion.identity);
+            particles.SetActive(false);
             initialBall = null;
             initialBall = clone;
             clone.transform.parent = transform;
