@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  timeOfArrival: 10
+  timeOfArrival: 30
 --- !u!1001 &6334226449858895141
 PrefabInstance:
   m_ObjectHideFlags: 0
