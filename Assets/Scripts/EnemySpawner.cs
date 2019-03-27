@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public List<GameObject> waypoints1 = new List<GameObject>();
+    public List<GameObject> waypoints2 = new List<GameObject>();
+    public List<GameObject> waypoints3 = new List<GameObject>();
     public GameObject enemy;
     public GameObject player;
     public float distance, enemyRate;
     bool wait;
+    public GameObject waypoint;
     public float enemyCount;
     //[Range(-1, 1)]
    // public float ang;
@@ -15,14 +19,24 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+       List<Vector3> waypoints = new List<Vector3>();
+
         for(int i = 1; i < 4; i++)
         {
             for (int y = 0; y < 12; y++)
             {
-                GameObject clone = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere),
-                    new Vector3(Mathf.Sin(-0.701f + (y * (2 * .701f / 6))) * 4 * i, 0, Mathf.Cos(-0.701f + (y * (2 * 0.701f / 6))) * 4 * i) + player.transform.position,
+                GameObject clone = Instantiate(waypoint,
+                    new Vector3(Mathf.Sin((-45 + (y * (2 * 45 / 12))) * Mathf.Deg2Rad) * 4 * i, 0, Mathf.Cos((-45 + (y * (2 * 45 / 12))) * Mathf.Deg2Rad) * 4 * i) + player.transform.position,
                     Quaternion.identity);
+                clone.name = "WP " + y.ToString() + " " + i.ToString();
+                if (i == 1)
+                    waypoints1.Add(clone);
+                else if (i == 2)
+                    waypoints2.Add(clone);
+                else if (i == 3)
+                {
+                    waypoints3.Add(clone);
+                }
             }
         }
     }
@@ -40,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(Cooldown());
         }   
    }
-
+    
     IEnumerator Cooldown ()
     {
         yield return new WaitForSeconds(enemyRate);

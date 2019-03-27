@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.6713727, g: 0.723684, b: 0.90217686, a: 1}
+  m_IndirectSpecularColor: {r: 0.6714037, g: 0.723684, b: 0.9017581, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -993,10 +993,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291d92f68a47af94797723b0aa73b784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints1: []
+  waypoints2: []
+  waypoints3: []
   enemy: {fileID: 6931302313108508479, guid: 2aa4db46e8d29bf4cadc2a1d815208e0, type: 3}
   player: {fileID: 534669902}
   distance: 20
   enemyRate: 10
+  waypoint: {fileID: 439532133379066021, guid: abbb023694e415a4d80e7ef844d640ac, type: 3}
+  enemyCount: 0
 --- !u!1 &1563995193
 GameObject:
   m_ObjectHideFlags: 0
