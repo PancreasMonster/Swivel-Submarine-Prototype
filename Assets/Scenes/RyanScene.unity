@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.6714037, g: 0.723684, b: 0.9017581, a: 1}
+  m_IndirectSpecularColor: {r: 0.67140377, g: 0.723684, b: 0.9017581, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -385,7 +385,8 @@ MonoBehaviour:
   initialBall: {fileID: 587490755}
   CBP: {fileID: 396958958}
   force: 1000
-  shakeForce: 5
+  shakeForce: 0.05
+  shakeLength: 0
 --- !u!114 &534669908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,6 +1030,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2390211376035884429, guid: c11b6bbd142c3444b99e97ddc5683aff,
+        type: 3}
+      propertyPath: m_Name
+      value: Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2390211376035884429, guid: c11b6bbd142c3444b99e97ddc5683aff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7823013684368163379, guid: c11b6bbd142c3444b99e97ddc5683aff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1083,16 +1094,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2390211376035884429, guid: c11b6bbd142c3444b99e97ddc5683aff,
-        type: 3}
-      propertyPath: m_Name
-      value: Cannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 2390211376035884429, guid: c11b6bbd142c3444b99e97ddc5683aff,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4051034361618579523, guid: c11b6bbd142c3444b99e97ddc5683aff,
         type: 3}
@@ -1467,26 +1468,6 @@ PrefabInstance:
     - target: {fileID: 4146853040806105893, guid: e1f6bf2fa72baaf4cbdeb7a5c6587b0a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146853040806105893, guid: e1f6bf2fa72baaf4cbdeb7a5c6587b0a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146853040806105893, guid: e1f6bf2fa72baaf4cbdeb7a5c6587b0a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4146853040806105893, guid: e1f6bf2fa72baaf4cbdeb7a5c6587b0a,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971226983074672465, guid: e1f6bf2fa72baaf4cbdeb7a5c6587b0a,
-        type: 3}
-      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

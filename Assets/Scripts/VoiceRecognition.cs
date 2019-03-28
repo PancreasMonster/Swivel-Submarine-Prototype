@@ -13,8 +13,8 @@ public class VoiceRecognition : MonoBehaviour
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public GameObject cannonBall, initialBall;
     public Transform CBP;
-    public float force, shakeForce;
-    Vector3 originalpos;
+    public float force, shakeForce, shakeLength;
+    Vector3 originalpos, startPos;
     //Rigidbody rb;
     bool reloadable = false, firedFirst = false;
 
@@ -29,6 +29,7 @@ public class VoiceRecognition : MonoBehaviour
         keywordRecognizer.Start();
 
         originalpos = this.transform.position;
+        startPos = this.transform.position;
     }
 
     private void RecognizedSpeech (PhraseRecognizedEventArgs speech)
@@ -87,8 +88,22 @@ public class VoiceRecognition : MonoBehaviour
     {
         if (other.transform.tag == "EnemyCannonBall")
         {
-            this.transform.localPosition = originalpos + UnityEngine.Random.insideUnitSphere * shakeForce;
+            Destroy(other.gameObject);
+            shakeLength = 0.1f;
             print("Woah");
+        }
+    }
+
+    private void Update()
+    {
+        if (shakeLength >= 0)
+        {
+            this.transform.localPosition = originalpos + UnityEngine.Random.insideUnitSphere * shakeForce;
+            shakeLength -= Time.deltaTime;
+        }
+        else if (shakeLength <= 0)
+        {
+            this.transform.position = startPos;
         }
     }
 }
