@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
                 if (Vector3.Distance(wp.transform.position, transform.position) < closestDist)
                 {
                     closestDist = Vector3.Distance(wp.transform.position, transform.position);
-                    print(closestDist);
+                    //print(closestDist);
                     int currentIndex = waypoints.IndexOf(wp);
                     next = currentIndex;
                 }

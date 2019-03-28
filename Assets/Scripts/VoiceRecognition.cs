@@ -83,9 +83,9 @@ public class VoiceRecognition : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "EnemyCannonBall")
+        if (other.transform.tag == "EnemyCannonBall")
         {
             this.transform.localPosition = originalpos + UnityEngine.Random.insideUnitSphere * shakeForce;
             print("Woah");
