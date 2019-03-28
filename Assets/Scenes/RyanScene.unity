@@ -385,7 +385,7 @@ MonoBehaviour:
   initialBall: {fileID: 587490755}
   CBP: {fileID: 396958958}
   force: 1000
-  shakeForce: 0.05
+  shakeForce: 0.4
   shakeLength: 0
 --- !u!114 &534669908
 MonoBehaviour:

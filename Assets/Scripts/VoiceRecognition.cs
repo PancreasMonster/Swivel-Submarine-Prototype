@@ -89,7 +89,7 @@ public class VoiceRecognition : MonoBehaviour
         if (other.transform.tag == "EnemyCannonBall")
         {
             Destroy(other.gameObject);
-            shakeLength = 0.1f;
+            shakeLength = .4f;
             print("Woah");
         }
     }
@@ -98,7 +98,7 @@ public class VoiceRecognition : MonoBehaviour
     {
         if (shakeLength >= 0)
         {
-            this.transform.localPosition = originalpos + UnityEngine.Random.insideUnitSphere * shakeForce;
+            this.transform.localPosition = originalpos + UnityEngine.Random.insideUnitSphere * shakeForce * (Time.deltaTime * 1.5f);
             shakeLength -= Time.deltaTime;
         }
         else if (shakeLength <= 0)
