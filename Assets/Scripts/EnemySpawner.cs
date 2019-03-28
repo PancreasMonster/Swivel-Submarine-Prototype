@@ -23,12 +23,17 @@ public class EnemySpawner : MonoBehaviour
 
         for(int i = 1; i < 4; i++)
         {
-            for (int y = 0; y < 12; y++)
+            for (int y = 0; y < 60; y++)
             {
+                
                 GameObject clone = Instantiate(waypoint,
-                    new Vector3(Mathf.Sin((-45 + (y * (2 * 45 / 12))) * Mathf.Deg2Rad) * 4 * i, 0, Mathf.Cos((-45 + (y * (2 * 45 / 12))) * Mathf.Deg2Rad) * 4 * i) + player.transform.position,
+                    new Vector3(Mathf.Sin((-60 + (y * (2 * 60 / 60))) * Mathf.Deg2Rad) * 4 * i, 0, Mathf.Cos((-60 + (y * (2 * 60 / 60))) * Mathf.Deg2Rad) * 4 * i) + player.transform.position,
                     Quaternion.identity);
+
+               
+
                 clone.name = "WP " + y.ToString() + " " + i.ToString();
+                clone.transform.SetParent(transform);
                 if (i == 1)
                     waypoints1.Add(clone);
                 else if (i == 2)
@@ -37,6 +42,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     waypoints3.Add(clone);
                 }
+            
+
             }
         }
     }

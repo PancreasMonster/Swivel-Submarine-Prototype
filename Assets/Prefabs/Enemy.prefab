@@ -60,9 +60,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   player: {fileID: 0}
-  currentWP: {fileID: 0}
   timeOfArrival: 20
   next: 0
+  closestDist: 200
 --- !u!1001 &6334226449858895141
 PrefabInstance:
   m_ObjectHideFlags: 0

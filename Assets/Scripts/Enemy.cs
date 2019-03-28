@@ -5,12 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public List<GameObject> waypoints = new List<GameObject>();
-    public GameObject player, currentWP;
+    public GameObject player;
     public float timeOfArrival;
     float distance, d;
     bool startingToFire;
     EnemySpawner ES;
     public int next = 0;
+    public float closestDist = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +46,10 @@ public class Enemy : MonoBehaviour
                 
             foreach (GameObject wp in waypoints)
             {
-                float closestDist = 200;
-                if (Vector3.Distance(wp.transform.position, player.transform.position) < closestDist)
+                if (Vector3.Distance(wp.transform.position, transform.position) < closestDist)
                 {
-                    currentWP = wp;
+                    closestDist = Vector3.Distance(wp.transform.position, transform.position);
+                    print(closestDist);
                     int currentIndex = waypoints.IndexOf(wp);
                     next = currentIndex;
                 }
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, NextWaypoint(), 1 * Time.deltaTime);
         Vector3 dir = NextWaypoint() - transform.position;
-        transform.rotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 1 * Time.deltaTime);
         if (Vector3.Distance(NextWaypoint(), transform.position) < .2f)
         {
             AdvanceToNext();

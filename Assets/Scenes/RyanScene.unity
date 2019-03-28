@@ -999,7 +999,7 @@ MonoBehaviour:
   enemy: {fileID: 6931302313108508479, guid: 2aa4db46e8d29bf4cadc2a1d815208e0, type: 3}
   player: {fileID: 534669902}
   distance: 20
-  enemyRate: 10
+  enemyRate: 15
   waypoint: {fileID: 439532133379066021, guid: abbb023694e415a4d80e7ef844d640ac, type: 3}
   enemyCount: 0
 --- !u!1 &1563995193
