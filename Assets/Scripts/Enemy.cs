@@ -5,7 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public List<GameObject> waypoints = new List<GameObject>();
-    public GameObject player, cannonBall;
+    public GameObject player, cannonBall, particles;
+    public Transform Firepoint;
     public float timeOfArrival, force, waitTime;
     float distance, d;
     bool startingToFire, fired = true;
@@ -80,7 +81,8 @@ public class Enemy : MonoBehaviour
 
     void Fire() {
         Vector3 dir = player.transform.position - transform.position;
-        GameObject CB = Instantiate(cannonBall, transform.position, Quaternion.identity);
+        particles.SetActive(true);
+        GameObject CB = Instantiate(cannonBall, Firepoint.position, Quaternion.identity);
         CB.GetComponent<Rigidbody>().AddForce(dir * force);
         CB.GetComponent<Rigidbody>().useGravity = false;
         CB.transform.tag = "EnemyCannonBall";
@@ -114,6 +116,7 @@ public class Enemy : MonoBehaviour
     IEnumerator CannonF ()
     {
         yield return new WaitForSeconds(waitTime);
+        particles.SetActive(false);
         fired = false;
     }
 }
