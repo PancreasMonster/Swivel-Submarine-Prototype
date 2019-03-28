@@ -5,10 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public List<GameObject> waypoints = new List<GameObject>();
-    public GameObject player;
-    public float timeOfArrival;
+    public GameObject player, cannonBall;
+    public float timeOfArrival, force, waitTime;
     float distance, d;
-    bool startingToFire;
+    bool startingToFire, fired = true;
     EnemySpawner ES;
     public int next = 0;
     public float closestDist = 200;
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
                 waypoints = ES.waypoints2;
             else if (ES.enemyCount == 3)
                 waypoints = ES.waypoints1;
-                
+
             foreach (GameObject wp in waypoints)
             {
                 if (Vector3.Distance(wp.transform.position, transform.position) < closestDist)
@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour
                     next = currentIndex;
                 }
             }
+
+            StartCoroutine(CannonF());
         }
 
         if (startingToFire)
@@ -62,7 +64,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Circling ()
+    void Circling()
     {
         transform.position = Vector3.MoveTowards(transform.position, NextWaypoint(), 1 * Time.deltaTime);
         Vector3 dir = NextWaypoint() - transform.position;
@@ -71,6 +73,21 @@ public class Enemy : MonoBehaviour
         {
             AdvanceToNext();
         }
+
+        if (!fired)
+        Fire();
+    }
+
+    void Fire() {
+        Vector3 dir = player.transform.position - transform.position;
+        GameObject CB = Instantiate(cannonBall, transform.position, Quaternion.identity);
+        CB.GetComponent<Rigidbody>().AddForce(dir * force);
+        CB.GetComponent<Rigidbody>().useGravity = false;
+        CB.transform.tag = "EnemyCannonBall";
+        CB.transform.parent = null;
+        Destroy(CB, 5);
+        fired = true;
+        StartCoroutine(CannonF());
     }
 
     public Vector3 NextWaypoint()
@@ -92,5 +109,11 @@ public class Enemy : MonoBehaviour
             Destroy(col.transform.gameObject);
             Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator CannonF ()
+    {
+        yield return new WaitForSeconds(waitTime);
+        fired = false;
     }
 }

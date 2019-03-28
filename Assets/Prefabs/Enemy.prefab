@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6931302313108508420}
   - component: {fileID: 6931302313108508473}
   - component: {fileID: 6931302313108508472}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   player: {fileID: 0}
+  cannonBall: {fileID: 2867073079285014884, guid: e1f6bf2fa72baaf4cbdeb7a5c6587b0a,
+    type: 3}
   timeOfArrival: 20
+  force: 100
+  waitTime: 2
   next: 0
   closestDist: 200
 --- !u!1001 &6334226449858895141
@@ -144,6 +148,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185008324301338901, guid: 7a1e759d3dcf9254f8d1dcd052b608cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131850396567320412, guid: 7a1e759d3dcf9254f8d1dcd052b608cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a1e759d3dcf9254f8d1dcd052b608cb, type: 3}
