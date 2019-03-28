@@ -21,13 +21,13 @@ public class EnemySpawner : MonoBehaviour
     {
        List<Vector3> waypoints = new List<Vector3>();
 
-        for(int i = 1; i < 4; i++)
+        for(float i = 1; i < 4; i++)
         {
-            for (int y = 0; y < 60; y++)
+            for (float y = 0; y < 60; y++)
             {
                 
                 GameObject clone = Instantiate(waypoint,
-                    new Vector3(Mathf.Sin((-60 + (y * (2 * 60 / 60))) * Mathf.Deg2Rad) * 4 * i, 0, Mathf.Cos((-60 + (y * (2 * 60 / 60))) * Mathf.Deg2Rad) * 4 * i) + player.transform.position,
+                    new Vector3(Mathf.Sin((-45f + (y * (2f * 45f / 60f))) * Mathf.Deg2Rad) * 4 * i, 0, Mathf.Cos((-45f + (y * (2f * 45f / 60f))) * Mathf.Deg2Rad) * 4 * i) + player.transform.position,
                     Quaternion.identity);
 
                
