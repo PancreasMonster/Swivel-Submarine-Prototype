@@ -9,6 +9,7 @@ using System;
 public class VoiceRecognition : MonoBehaviour
 {
     private KeywordRecognizer keywordRecognizer;
+    public AudioSource reloadSource, fireSound;
     public GameObject particles;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public GameObject cannonBall, initialBall;
@@ -42,17 +43,8 @@ public class VoiceRecognition : MonoBehaviour
     {
         if (!reloadable)
         {
-            GameObject CB = initialBall;
-            particles.SetActive(true);
-            if (CB != null)
-            {
-                CB.GetComponent<Rigidbody>().AddForce(transform.forward * force);
-                CB.GetComponent<Rigidbody>().useGravity = false;
-                CB.transform.tag = "CannonBall";
-                CB.transform.parent = null;
-                Destroy(CB, 5);
-                reloadable = true;
-            }
+            fireSound.Play();
+            StartCoroutine("FireCall");
         }
     }
 
@@ -60,6 +52,7 @@ public class VoiceRecognition : MonoBehaviour
     {
         if (reloadable)
         {
+            reloadSource.Play();
             GameObject clone = Instantiate(cannonBall, CBP.position, Quaternion.identity);
             particles.SetActive(false);
             initialBall = null;
@@ -74,6 +67,7 @@ public class VoiceRecognition : MonoBehaviour
     {
         if (reloadable)
         {
+            reloadSource.Play();
             GameObject clone = Instantiate(cannonBall, CBP.position, Quaternion.identity);
             particles.SetActive(false);
             initialBall = null;
@@ -104,6 +98,22 @@ public class VoiceRecognition : MonoBehaviour
         else if (shakeLength <= 0)
         {
             this.transform.position = startPos;
+        }
+    }
+
+    IEnumerator FireCall()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject CB = initialBall;
+        particles.SetActive(true);
+        if (CB != null)
+        {
+            CB.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+            CB.GetComponent<Rigidbody>().useGravity = false;
+            CB.transform.tag = "CannonBall";
+            CB.transform.parent = null;
+            Destroy(CB, 5);
+            reloadable = true;
         }
     }
 }

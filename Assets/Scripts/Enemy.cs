@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject player, cannonBall, particles;
     public Transform Firepoint;
     public float timeOfArrival, force, waitTime;
+    public AudioSource audioSource, fireAudio;
     float distance, d;
     bool startingToFire, fired = true;
     EnemySpawner ES;
@@ -80,6 +81,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Fire() {
+        fireAudio.Play();
         Vector3 dir = player.transform.position - transform.position;
         particles.SetActive(true);
         GameObject CB = Instantiate(cannonBall, Firepoint.position, Quaternion.identity);
@@ -107,10 +109,17 @@ public class Enemy : MonoBehaviour
     {
         if (col.transform.tag == "CannonBall")
         {
-            ES.enemyCount--;
+            StartCoroutine("Destroy");
             Destroy(col.transform.gameObject);
-            Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator Destroy()
+    {
+        audioSource.Play();
+        ES.enemyCount--;
+        yield return new WaitForSeconds(1.2f);
+        Destroy(this.gameObject);
     }
 
     IEnumerator CannonF ()
