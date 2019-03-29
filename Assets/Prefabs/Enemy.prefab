@@ -96,6 +96,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!111 &7504703412807592514
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770079707065066544}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a274e6b32f2fe4a4e8f16dc16080a2ad, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a274e6b32f2fe4a4e8f16dc16080a2ad, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!82 &153946223
 AudioSource:
   m_ObjectHideFlags: 0
@@ -275,6 +291,7 @@ MonoBehaviour:
   waitTime: 2
   audioSource: {fileID: 1239775879}
   fireAudio: {fileID: 153946223}
+  anim: {fileID: 7504703412807592514}
   next: 0
   closestDist: 200
 --- !u!82 &1071198687041300751
@@ -428,12 +445,12 @@ PrefabInstance:
     - target: {fileID: 198981438950525030, guid: 7a1e759d3dcf9254f8d1dcd052b608cb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 90.00001
       objectReference: {fileID: 0}
     - target: {fileID: 198981438950525030, guid: 7a1e759d3dcf9254f8d1dcd052b608cb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 198981438950525030, guid: 7a1e759d3dcf9254f8d1dcd052b608cb,
         type: 3}

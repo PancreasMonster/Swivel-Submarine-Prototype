@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Transform Firepoint;
     public float timeOfArrival, force, waitTime;
     public AudioSource audioSource, fireAudio;
+    public Animation anim;
     float distance, d;
     bool startingToFire, fired = true;
     EnemySpawner ES;
@@ -118,7 +119,8 @@ public class Enemy : MonoBehaviour
     {
         audioSource.Play();
         ES.enemyCount--;
-        yield return new WaitForSeconds(1.2f);
+        anim.Play();
+        yield return new WaitForSeconds(5f);
         Destroy(this.gameObject);
     }
 
