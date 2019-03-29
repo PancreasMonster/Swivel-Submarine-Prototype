@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class EnemySpawner : MonoBehaviour
     public float distance, enemyRate;
     bool wait;
     public GameObject waypoint;
-    public float enemyCount;
+    public float enemyCount, overallEnemyCount, enemyKillCount;
+    public Animator anim, anim2;
+    public Text text;
     //[Range(-1, 1)]
    // public float ang;
 
@@ -51,15 +54,23 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if (!wait && enemyCount < 3)
+      if (!wait && enemyCount < 3 && overallEnemyCount < 31)
         {
             wait = true;
             enemyCount++;
+            overallEnemyCount++;
             float ang = Random.Range(-1f, 1f);
             GameObject clone = Instantiate(enemy, player.transform.position + (new Vector3 (Mathf.Sin(ang), 0, Mathf.Cos(ang)) * distance), Quaternion.identity);
             clone.GetComponent<Enemy>().player = player;
             StartCoroutine(Cooldown());
         }   
+
+      if (enemyKillCount >= 30)
+        {
+            anim.SetBool("Fade", true);
+            text.text = "Aaaaar, that was a fine battle, matey";
+            anim2.SetBool("Fade", true);
+        }
    }
     
     IEnumerator Cooldown ()

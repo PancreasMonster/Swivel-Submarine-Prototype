@@ -119,6 +119,7 @@ public class Enemy : MonoBehaviour
     {
         audioSource.Play();
         ES.enemyCount--;
+        ES.enemyKillCount++;
         anim.Play();
         yield return new WaitForSeconds(5f);
         Destroy(this.gameObject);

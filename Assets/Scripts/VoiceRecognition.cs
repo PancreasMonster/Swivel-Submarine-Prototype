@@ -24,6 +24,9 @@ public class VoiceRecognition : MonoBehaviour
         //rb = initialBall.GetComponent<Rigidbody>();
         actions.Add("fire", Fire);
         actions.Add("reload", ReloadTest);
+        actions.Add("restart", Restart);
+        actions.Add("pause", Pause);
+        actions.Add("play", Unpause);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -61,6 +64,21 @@ public class VoiceRecognition : MonoBehaviour
             //rb = clone.GetComponent<Rigidbody>();
             reloadable = false;
         }
+    }
+
+    public void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+    }
+
+    public void Pause ()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
     }
 
     public void ReloadTest()
