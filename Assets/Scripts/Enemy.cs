@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public Animation anim;
     float distance, d;
     bool startingToFire, fired = true;
+    bool dead = false;
     EnemySpawner ES;
     public int next = 0;
     public float closestDist = 200;
@@ -82,17 +83,20 @@ public class Enemy : MonoBehaviour
     }
 
     void Fire() {
-        fireAudio.Play();
-        Vector3 dir = player.transform.position - transform.position;
-        particles.SetActive(true);
-        GameObject CB = Instantiate(cannonBall, Firepoint.position, Quaternion.identity);
-        CB.GetComponent<Rigidbody>().AddForce(dir * force);
-        CB.GetComponent<Rigidbody>().useGravity = false;
-        CB.transform.tag = "EnemyCannonBall";
-        CB.transform.parent = null;
-        Destroy(CB, 5);
-        fired = true;
-        StartCoroutine(CannonF());
+        if (dead == false)
+        {
+            fireAudio.Play();
+            Vector3 dir = player.transform.position - transform.position;
+            particles.SetActive(true);
+            GameObject CB = Instantiate(cannonBall, Firepoint.position, Quaternion.identity);
+            CB.GetComponent<Rigidbody>().AddForce(dir * force);
+            CB.GetComponent<Rigidbody>().useGravity = false;
+            CB.transform.tag = "EnemyCannonBall";
+            CB.transform.parent = null;
+            Destroy(CB, 5);
+            fired = true;
+            StartCoroutine(CannonF());
+        }
     }
 
     public Vector3 NextWaypoint()
@@ -121,6 +125,7 @@ public class Enemy : MonoBehaviour
         ES.enemyCount--;
         ES.enemyKillCount++;
         anim.Play();
+        dead = true;
         yield return new WaitForSeconds(5f);
         Destroy(this.gameObject);
     }
