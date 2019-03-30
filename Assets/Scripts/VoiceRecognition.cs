@@ -120,7 +120,7 @@ public class VoiceRecognition : MonoBehaviour
         MicLoudness = LevelMax();
         testSound = MicLoudness;
 
-        if(testSound > .5f && !reloadable)
+        if(testSound > .3f && !reloadable)
         {
             Fire();
         }

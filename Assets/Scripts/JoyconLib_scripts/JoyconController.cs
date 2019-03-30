@@ -65,7 +65,7 @@ public class JoyconController : MonoBehaviour {
            // orientation = Quaternion.Euler(rot);
           //  rotation = orientation.eulerAngles;
           if (joyconType == JoyconManager.JoyconType.left)
-            gameObject.transform.rotation = Quaternion.Euler(0, Mathf.Abs(orientation.x) * 180 + 90, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, Mathf.Abs(orientation.x) * 180 - 90, 0);
 
             if (joyconType == JoyconManager.JoyconType.right && accelMagnitude > forceNeeded && !cooldown)
             {
