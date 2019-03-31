@@ -12,7 +12,7 @@ public class VoiceRecognition : MonoBehaviour
     public AudioSource reloadSource, fireSound;
     public GameObject particles;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
-    public GameObject cannonBall, initialBall;
+    public GameObject cannonBall, initialBall, light;
     public Transform CBP;
     public float force, shakeForce, shakeLength;
     Vector3 originalpos, startPos;
@@ -32,6 +32,8 @@ public class VoiceRecognition : MonoBehaviour
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();*/
 
+        light.GetComponent<Renderer>().material.color = Color.green;
+        light.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
         originalpos = this.transform.position;
         startPos = this.transform.position;
     }
@@ -63,6 +65,8 @@ public class VoiceRecognition : MonoBehaviour
             clone.transform.parent = transform;
             //rb = clone.GetComponent<Rigidbody>();
             reloadable = false;
+            light.GetComponent<Renderer>().material.color = Color.green;
+            light.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
         }
     }
 
@@ -93,6 +97,8 @@ public class VoiceRecognition : MonoBehaviour
             clone.transform.parent = transform;
             //rb = clone.GetComponent<Rigidbody>();
             reloadable = false;
+            light.GetComponent<Renderer>().material.color = Color.green;
+            light.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
         }
     }
 
@@ -124,6 +130,8 @@ public class VoiceRecognition : MonoBehaviour
         {
             Fire();
         }
+
+        if (Input.GetKeyDown(KeyCode.R)) Restart();
     }
 
     IEnumerator FireCall()
@@ -139,6 +147,8 @@ public class VoiceRecognition : MonoBehaviour
             CB.transform.parent = null;
             Destroy(CB, 5);
             reloadable = true;
+            light.GetComponent<Renderer>().material.color = Color.red;
+            light.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
         }
     }
 
