@@ -40,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
             anim.SetBool("Fade", true);
             text.text = "Alas, we could only hold on for so long";
             anim2.SetBool("Fade", true);
+            StartCoroutine(ReloadGame());
         }
     }
 
@@ -51,5 +52,13 @@ public class PlayerHealth : MonoBehaviour
             regenDelay = 2;
             Destroy(other.gameObject);
         }
+    }
+
+    IEnumerator ReloadGame()
+    {
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(2);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }

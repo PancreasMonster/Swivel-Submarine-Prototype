@@ -126,7 +126,7 @@ public class VoiceRecognition : MonoBehaviour
         MicLoudness = LevelMax();
         testSound = MicLoudness;
 
-        if(testSound > .3f && !reloadable)
+        if(testSound > .1f && !reloadable)
         {
             Fire();
         }
@@ -141,7 +141,8 @@ public class VoiceRecognition : MonoBehaviour
         particles.SetActive(true);
         if (CB != null)
         {
-            CB.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+            CB.GetComponent<Rigidbody>().isKinematic = false;
+           CB.GetComponent<Rigidbody>().AddForce(transform.forward * force);
             CB.GetComponent<Rigidbody>().useGravity = false;
             CB.transform.tag = "CannonBall";
             CB.transform.parent = null;

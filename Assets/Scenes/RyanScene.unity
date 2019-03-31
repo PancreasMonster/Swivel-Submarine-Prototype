@@ -2314,8 +2314,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325146769}
-  m_LocalRotation: {x: 0.144494, y: 0.08153585, z: 0.011947974, w: -0.9860683}
-  m_LocalPosition: {x: 158.01437, y: -271.1675, z: -263.59247}
+  m_LocalRotation: {x: 0.092164285, y: 0.12215996, z: 0.0113937445, w: -0.9881563}
+  m_LocalPosition: {x: 766.4314, y: -577.8316, z: -1543.5846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2486,7 +2486,7 @@ MonoBehaviour:
   anim: {fileID: 807797647}
   anim2: {fileID: 735398380}
   text: {fileID: 735398381}
-  text2: {fileID: 0}
+  text2: {fileID: 320432734}
 --- !u!1 &1595841192 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2390211376035884429, guid: c11b6bbd142c3444b99e97ddc5683aff,
@@ -2684,6 +2684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1729279172}
   - component: {fileID: 1729279171}
+  - component: {fileID: 1729279173}
   m_Layer: 0
   m_Name: Water4SimpleReflectionCamera
   m_TagString: Untagged
@@ -2740,13 +2741,22 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729279170}
-  m_LocalRotation: {x: 0.006173062, y: 0.21667469, z: 0.0013721847, w: -0.9762234}
-  m_LocalPosition: {x: 1.0160335, y: -25.02736, z: -11.020029}
+  m_LocalRotation: {x: 0.092164285, y: 0.12215996, z: 0.0113937445, w: -0.9881563}
+  m_LocalPosition: {x: 144.36212, y: -187.86218, z: -443.72006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &1729279173
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729279170}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1 &1729939970
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,6 +3172,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4152977881526415300, guid: cf253193b9730f34db33af5e270e929c,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf253193b9730f34db33af5e270e929c, type: 3}
 --- !u!1001 &6931302313305991076
@@ -3184,7 +3199,7 @@ PrefabInstance:
     - target: {fileID: 6931302313108508420, guid: 2aa4db46e8d29bf4cadc2a1d815208e0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.15
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6931302313108508420, guid: 2aa4db46e8d29bf4cadc2a1d815208e0,
         type: 3}
@@ -3194,7 +3209,7 @@ PrefabInstance:
     - target: {fileID: 6931302313108508420, guid: 2aa4db46e8d29bf4cadc2a1d815208e0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.53
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 6931302313108508420, guid: 2aa4db46e8d29bf4cadc2a1d815208e0,
         type: 3}

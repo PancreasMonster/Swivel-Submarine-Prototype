@@ -71,6 +71,7 @@ public class EnemySpawner : MonoBehaviour
             anim.SetBool("Fade", true);
             text.text = "Aaaaar, that was a fine battle, matey";
             anim2.SetBool("Fade", true);
+            StartCoroutine(ReloadGame());
         }
    }
     
@@ -78,5 +79,13 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(enemyRate);
         wait = false;
+    }
+
+    IEnumerator ReloadGame()
+    {
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(2);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }
