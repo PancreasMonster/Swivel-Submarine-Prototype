@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject waypoint;
     public float enemyCount, overallEnemyCount, enemyKillCount;
     public Animator anim, anim2;
-    public Text text;
+    public Text text, text2;
     //[Range(-1, 1)]
    // public float ang;
 
@@ -63,6 +63,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject clone = Instantiate(enemy, player.transform.position + (new Vector3 (Mathf.Sin(ang), 0, Mathf.Cos(ang)) * distance), Quaternion.identity);
             clone.GetComponent<Enemy>().player = player;
             StartCoroutine(Cooldown());
+            text2.text = "Ships Destroyed: " + enemyKillCount.ToString();
         }   
 
       if (enemyKillCount >= 30)
