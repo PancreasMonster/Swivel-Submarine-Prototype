@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     bool dead = false;
     EnemySpawner ES;
     public int next = 0;
-    public float closestDist = 200;
+    public float closestDist = .12f;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +61,10 @@ public class Enemy : MonoBehaviour
                     closestDist = Vector3.Distance(wp.transform.position, transform.position);
                     //print(closestDist);
                     int currentIndex = waypoints.IndexOf(wp);
-                    next = currentIndex;
+                    if (currentIndex > -1 && currentIndex < waypoints.Count + 1)
+                        next = currentIndex;
+                    else
+                        next = 0;
                 }
             }
 

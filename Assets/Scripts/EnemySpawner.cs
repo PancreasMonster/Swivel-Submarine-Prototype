@@ -86,6 +86,6 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         Time.timeScale = 0;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+       // UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }

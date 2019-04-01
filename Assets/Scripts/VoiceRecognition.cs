@@ -73,6 +73,7 @@ public class VoiceRecognition : MonoBehaviour
     public void Restart()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        Time.timeScale = 1;
     }
 
     public void Pause ()
@@ -126,7 +127,7 @@ public class VoiceRecognition : MonoBehaviour
         MicLoudness = LevelMax();
         testSound = MicLoudness;
 
-        if(testSound > .1f && !reloadable)
+        if(testSound > .2f && !reloadable)
         {
             Fire();
         }
