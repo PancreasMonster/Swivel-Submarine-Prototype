@@ -62,16 +62,17 @@ public class EnemySpawner : MonoBehaviour
             float ang = Random.Range(-1f, 1f);
             GameObject clone = Instantiate(enemy, player.transform.position + (new Vector3 (Mathf.Sin(ang), 0, Mathf.Cos(ang)) * distance), Quaternion.identity);
             clone.GetComponent<Enemy>().player = player;
-            StartCoroutine(Cooldown());
-            text2.text = "Ships Destroyed: " + enemyKillCount.ToString();
-        }   
+            StartCoroutine(Cooldown());          
+        }
 
-      if (enemyKillCount >= 30)
+        text2.text = "Ships Destroyed: " + enemyKillCount.ToString();
+
+        if (enemyKillCount >= 30)
         {
-            anim.SetBool("Fade", true);
-            text.text = "Aaaaar, that was a fine battle, matey";
+           // anim.SetBool("Fade", true);
+            text.text = "Aaaaar, that was a fine battle, matey. Press R To Restart";
             anim2.SetBool("Fade", true);
-            StartCoroutine(ReloadGame());
+           // StartCoroutine(ReloadGame());
         }
    }
     
@@ -83,9 +84,8 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator ReloadGame()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         Time.timeScale = 0;
-        yield return new WaitForSeconds(2);
         UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }

@@ -1225,7 +1225,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -410, y: -203}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 1500, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &735398380
 Animator:
@@ -1276,7 +1276,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Mission: Survive And Destroy 30 ships'
@@ -2741,8 +2741,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729279170}
-  m_LocalRotation: {x: 0.092164285, y: 0.12215996, z: 0.0113937445, w: -0.9881563}
-  m_LocalPosition: {x: 144.36212, y: -187.86218, z: -443.72006}
+  m_LocalRotation: {x: 0.010451692, y: 0.095847204, z: 0.0010065527, w: -0.9953407}
+  m_LocalPosition: {x: -0.93479717, y: -26.09304, z: -12.841615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3006,7 +3006,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1962475354
 RectTransform:

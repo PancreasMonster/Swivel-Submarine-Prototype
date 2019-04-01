@@ -56,9 +56,8 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator ReloadGame()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         Time.timeScale = 0;
-        yield return new WaitForSeconds(2);
         UnityEngine.SceneManagement.SceneManager.LoadScene("RyanScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }

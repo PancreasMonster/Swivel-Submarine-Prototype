@@ -30,6 +30,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKeyDown (KeyCode.G)) StartCoroutine("Destroy");
+        {
+
+        }
+
         if (!startingToFire)
         {
             Vector3 dir = player.transform.position - (transform.position + (-Vector3.forward * 3));
@@ -64,6 +70,7 @@ public class Enemy : MonoBehaviour
 
         if (startingToFire)
         {
+            if(!dead)
             Circling();
         }
     }
@@ -121,6 +128,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Destroy()
     {
+        waypoints.Clear();
         audioSource.Play();
         ES.enemyCount--;
         ES.enemyKillCount++;
